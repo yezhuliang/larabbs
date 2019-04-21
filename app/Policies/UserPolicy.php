@@ -13,4 +13,9 @@ class UserPolicy
     {
         return $currentUser->id === $user->id;
     }
+
+    public function practice(User $currentUser, User $user)
+    {
+        return $currentUser->id === $user->id;
+    }
 }

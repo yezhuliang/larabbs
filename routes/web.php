@@ -18,6 +18,8 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
+Route::get('/users/{user}/practice', 'UsersController@practice')->name('users.practice');
+
 Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
 Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
 

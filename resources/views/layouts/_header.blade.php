@@ -12,17 +12,47 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                LaraBBS
+                C-Web
             </a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">练习</a>
+                    @guest
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>请先登录</a>
+                        </li>
+                    </ul>
+                    @else
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ route('users.practice', Auth::id()) }}">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                        个人练习
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        独立开发
+                                </a>
+                            </li>
+                        </ul>
+                    @endguest
+                </li>
+
                 <li class="{{ active_class(if_route('topics.index')) }}"><a href="{{ route('topics.index') }}">话题</a></li>
+
                 <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 1))) }}"><a href="{{ route('categories.show', 1) }}">分享</a></li>
+
                 <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 2))) }}"><a href="{{ route('categories.show', 2) }}">教程</a></li>
+
                 <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 3))) }}"><a href="{{ route('categories.show', 3) }}">问答</a></li>
+
                 <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 4))) }}"><a href="{{ route('categories.show', 4) }}">公告</a></li>
             </ul>
 
@@ -30,8 +60,18 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @guest
-                    <li><a href="{{ route('login') }}">登录</a></li>
-                    <li><a href="{{ route('register') }}">注册</a></li>
+                    <li>
+                        <a href="{{ route('login') }}">
+                            <span class="glyphicon glyphicon-log-in"></span>
+                                &nbsp;登录
+                            </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('register') }}">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                注册
+                        </a>
+                    </li>
                 @else
                     <li>
                         <a href="{{ route('topics.create') }}">
